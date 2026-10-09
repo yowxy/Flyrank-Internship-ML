@@ -2,15 +2,26 @@
 
 ## Proof statement
 
-I build small machine-learning prototypes on messy, real-world data — and I
-write down exactly where they break. I'm proving this to a hiring manager at
-a small tech team who needs a junior that can ship something honest instead
-of a polished demo, so they will email me to set up a chat.
+I ship honest machine-learning prototypes on messy, real-world data: small
+models with their limits written down, like my content-refresh queue that
+beats a hand-rule baseline and says exactly where it fails. I'm proving this
+to a hiring manager at a small tech team who needs a junior that delivers a
+working prototype instead of a polished demo, so they will email me to set
+up a chat.
 
-**Why this page needs to exist:** a CV can list "Python, scikit-learn" like
-ten thousand other CVs. It can't show how I handled a leaky feature, why I
-picked a client-holdout split, or what my model got wrong. This site shows
-the working and the limits, not just the tools.
+**Why this page needs to exist:** a CV lists "Python, scikit-learn" exactly
+like ten thousand other CVs. It can't show how I caught a leaky feature,
+why I picked a client-holdout split, or what my model got wrong — this site
+shows the working and the limits, not the tool names.
+
+## Narrowing trail (why this version, not the broader ones)
+
+- Rejected: "I do AI, data analysis, and machine learning." → three skills
+  hiding behind "and", describes anyone.
+- Rejected: "I build ML models on real data." → no honesty angle, no person,
+  no proof anyone can check.
+- Kept: one verb (ship honest prototypes), one person, one action, and one
+  checkable proof (the refresh queue) that only matches my repo.
 
 ## Sitemap sketch (redraw on paper, photograph for the portal)
 

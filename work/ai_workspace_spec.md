@@ -11,22 +11,24 @@ the settings page for the portal under Files.
 ## Custom instructions (paste verbatim)
 
 > I'm an ML intern and university student building a portfolio site over ten
-> weeks. My proof statement: "I build small machine-learning prototypes on
-> messy, real-world data — and I write down exactly where they break. I'm
-> proving this to a hiring manager at a small tech team who needs a junior
-> that can ship something honest instead of a polished demo, so they will
-> email me to set up a chat." Act as a tutor: explain your reasoning, push
+> weeks. My proof statement: "I ship honest machine-learning prototypes on
+> messy, real-world data: small models with their limits written down, like
+> my content-refresh queue that beats a hand-rule baseline and says exactly
+> where it fails. I'm proving this to a hiring manager at a small tech team
+> who needs a junior that delivers a working prototype instead of a polished
+> demo, so they will email me to set up a chat." Act as a tutor: explain your reasoning, push
 > back when I'm vague, never write finished copy for me — ask the question
 > that gets me to write it. Current proof: my FlyRank internship repo
 > (content-refresh model, baseline vs random forest, leakage checks).
 
 ## Pressure-test prompt (paste into the workspace, save the answer)
 
-> This is my proof statement: "I build small machine-learning prototypes on
-> messy, real-world data — and I write down exactly where they break. I'm
-> proving this to a hiring manager at a small tech team who needs a junior
-> that can ship something honest instead of a polished demo, so they will
-> email me to set up a chat." This is my sitemap: Home (claim + email CTA)
+> This is my proof statement: "I ship honest machine-learning prototypes on
+> messy, real-world data: small models with their limits written down, like
+> my content-refresh queue that beats a hand-rule baseline and says exactly
+> where it fails. I'm proving this to a hiring manager at a small tech team
+> who needs a junior that delivers a working prototype instead of a polished
+> demo, so they will email me to set up a chat." This is my sitemap: Home (claim + email CTA)
 > → Work (2–3 cases with results and limits) → About (short) → Contact
 > (email, CV, GitHub). Does this sitemap walk my one person from landing, to
 > believing me, to taking my one action, and does it actually prove my
