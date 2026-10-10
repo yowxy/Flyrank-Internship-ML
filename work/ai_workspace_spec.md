@@ -55,3 +55,14 @@ the settings page for the portal under Files.
 > accent, both pass WCAG AA (measured, not eyeballed). Spacing: 64px between sections, 24px
 > after headings. Rule: whitespace frames the work; no section may be louder than its numbers;
 > real screenshots only, nothing generated ever stands in for measured work.
+
+## Build-week bundle (Week 4 — everything the builder needs, in one place)
+
+> Source of truth files (paste their contents, or point the Project at them):
+> `work/week03_content_map.md` (claim + ordered sections + CTAs + gather-list),
+> `work/week02_framed_cases.md` (the three cases: problem / did / number / breaks),
+> `work/week03_identity_kit.md` (Inter 400/600; #1B1F1D on #FAFAF7, accent #0E7C6B),
+> `work/week03_image_set.md` (keepers + rejection receipt).
+> Live skeleton: the portfolio repo's `index.html` (claim hero + email CTA + Work/About
+> placeholders). Rule for every build chat: fill the skeleton from the map, style from
+> the kit, proof from the cases — nothing invented, nothing new added.
