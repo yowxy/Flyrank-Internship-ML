@@ -1,0 +1,12 @@
+{
+  "base_rate": 0.5421,
+  "block_rate_flagged": 0.6557,
+  "flagged": 3529,
+  "precision_at_20": 1.0,
+  "precision_at_200": 0.805,
+  "precision_at_50": 0.9,
+  "reason_code": "stale_visible_weak_snippet",
+  "rows": 30000,
+  "rule": "stale90 * visible500 * weak_snippet(ctr<0.5, 1<=pos<=20) * (21-pos)",
+  "split": "in-sample (Week-5 model judged on client-holdout)"
+}
