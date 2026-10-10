@@ -47,3 +47,11 @@ the settings page for the portal under Files.
 > missing, but each Work case needs its weak point in the open or the
 > "honest about limits" claim fails. **Change: fold Contact into Home's
 > final block and the footer; ship three pages, not four.**
+
+## Visual identity (Week 3 — paste into every build chat alongside the above)
+
+> Fonts: Inter only (400 body, 600 headings; H1 32, H2 24, body 17/1.6, labels 13 uppercase).
+> Colors: text #1B1F1D, background #FAFAF7, links/accent #0E7C6B — contrast 15.9 body / 4.9
+> accent, both pass WCAG AA (measured, not eyeballed). Spacing: 64px between sections, 24px
+> after headings. Rule: whitespace frames the work; no section may be louder than its numbers;
+> real screenshots only, nothing generated ever stands in for measured work.
