@@ -1,0 +1,42 @@
+{
+  "n_test_clients": 6,
+  "seed": 42,
+  "table": [
+    {
+      "AUC": 0.501,
+      "P@20": 0.4,
+      "P@200": 0.395,
+      "P@50": 0.42,
+      "model": "baseline_rule",
+      "test_base": 0.391
+    },
+    {
+      "AUC": 0.696,
+      "P@20": 0.4,
+      "P@200": 0.545,
+      "P@50": 0.52,
+      "model": "logreg",
+      "test_base": 0.391
+    },
+    {
+      "AUC": 0.742,
+      "P@20": 0.5,
+      "P@200": 0.595,
+      "P@50": 0.56,
+      "model": "tree",
+      "test_base": 0.391
+    },
+    {
+      "AUC": 0.747,
+      "P@20": 0.7,
+      "P@200": 0.705,
+      "P@50": 0.78,
+      "model": "rf",
+      "test_base": 0.391
+    }
+  ],
+  "test_base": 0.391,
+  "test_rows": 2325,
+  "train_base": 0.5548,
+  "train_rows": 27675
+}
