@@ -1,0 +1,23 @@
+{
+  "brief": "refresh_brief_2026-10-13.md",
+  "evals": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true
+  },
+  "injection_flags": [],
+  "input": "/home/iklil/Internship/FLyrank/Assingnment1/flyrank-ml-internship-starter/data/raw/content_refresh_anonymized.csv",
+  "metrics": {
+    "base_rate_declining": 0.5421,
+    "declining_in_top_k": 2,
+    "k": 10,
+    "precision_at_10": 0.2,
+    "rows_scored": 30000
+  },
+  "queue": "refresh_queue_2026-10-13.csv",
+  "run_date": "2026-10-13",
+  "segment": null
+}

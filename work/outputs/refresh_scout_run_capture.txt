@@ -1,0 +1,17 @@
+Script started on 2026-10-13 16:08:08+07:00 [COMMAND="python3 work/scripts/refresh_scout.py --top-k 10" <not executed on terminal>]
+[evals] 6/6 frozen cases passed (offline)
+  case 1 clear_decliner_top3: PASS (rank=1)
+  case 2 recall_thin_in_top10: PASS (rank=3)
+  case 3 stable_evergreen_below_median: PASS (rank=7)
+  case 4 ambiguous_monitor_not_confident: PASS (action=monitor)
+  case 5 injection_flagged_not_top: PASS (flags=1, rank=11)
+  case 6 no_leakage_citation: PASS (brief cites no label-derived column)
+[fetch] live portfolio: 30000 rows from /home/iklil/Internship/FLyrank/Assingnment1/flyrank-ml-internship-starter/data/raw/content_refresh_anonymized.csv
+[score] transparent rule, leakage-free (trend_* never consulted in scoring)
+[screen] injection flags: 0
+[compare] base_rate=0.5421 P@10=0.2
+[render] brief -> /home/iklil/Internship/FLyrank/Assingnment1/flyrank-ml-internship-starter/work/outputs/refresh_brief_2026-10-13.md
+[render] queue -> /home/iklil/Internship/FLyrank/Assingnment1/flyrank-ml-internship-starter/work/outputs/refresh_queue_2026-10-13.csv
+[done] core job complete. Brief is a DRAFT for human approval.
+
+Script done on 2026-10-13 16:08:10+07:00 [COMMAND_EXIT_CODE="0"]
