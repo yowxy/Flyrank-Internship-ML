@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Name — Honest ML Prototypes</title>
-<meta name="description" content="Small models on real search data, with the failures written down.">
+<meta name="description" content="Small models on real search data, with the failures written down. FlyRank ML internship portfolio.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,43 +12,164 @@
 <style>
   :root { --text: #1B1F1D; --bg: #FAFAF7; --accent: #0E7C6B; }
   * { box-sizing: border-box; }
-  body { font-family: 'Inter', system-ui, sans-serif; font-size: 17px; line-height: 1.6;
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 17px; line-height: 1.6;
          color: var(--text); background: var(--bg); margin: 0; }
   main { max-width: 640px; margin: 0 auto; padding: 96px 24px 64px; }
   h1 { font-size: 32px; font-weight: 600; line-height: 1.25; margin: 0 0 16px; }
+  h2 { font-size: 24px; font-weight: 600; margin: 0 0 8px; }
+  h3 { font-size: 18px; font-weight: 600; margin: 24px 0 4px; }
   p.sub { margin: 0 0 32px; }
   a { color: var(--accent); }
   .cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
          padding: 12px 24px; border-radius: 6px; font-weight: 600; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 0; }
+  .ghost { display: inline-block; border: 1px solid var(--accent); color: var(--accent);
+           text-decoration: none; padding: 11px 23px; border-radius: 6px; font-weight: 600; }
   section { margin-top: 64px; }
-  h2 { font-size: 24px; font-weight: 600; margin: 0 0 8px; }
+  .label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.7; margin: 0 0 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #d8dcd9; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .case { border-left: 3px solid var(--accent); padding-left: 16px; margin: 24px 0; }
+  .case p { margin: 8px 0; }
   .soon { opacity: 0.65; font-size: 15px; }
+  .badge-slot { border: 1px dashed #9AA3A0; border-radius: 6px; padding: 16px; font-size: 15px; opacity: 0.8; }
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #9AA3A0; font-size: 15px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 4px 12px; }
 </style>
 </head>
 <body>
 <main>
+
+  <!-- HERO: the claim + the one action -->
+  <!-- TODO(you): replace "Your Name" and you@example.com (2x: CTA + footer) -->
+  <p class="label">Portfolio — FlyRank ML internship</p>
   <h1>Small models on real search data, with the failures written down.</h1>
-  <!-- TODO(you): replace with your name -->
-  <p class="sub">Your Name — ML intern &amp; student, FlyRank.</p>
-  <!-- TODO(you): replace the email address below -->
+  <p class="sub">Your Name — ML intern &amp; student, FlyRank. I ship honest machine-learning
+  prototypes on messy data: a content-refresh queue that beats a hand-rule baseline
+  and says exactly where it breaks.</p>
   <p><a class="cta" href="mailto:you@example.com">Email me to set up a chat</a></p>
 
-  <section>
-    <h2>Work</h2>
-    <p class="soon">Case studies landing next week — refresh queue, failed hand rule, label trap.</p>
+  <!-- PROOF TEASER: the single strongest measured number -->
+  <section aria-label="Proof teaser">
+    <p class="label">The one number</p>
+    <h2>Random forest beats the hand rule, on held-out clients.</h2>
+    <table>
+      <tr><th>Approach</th><th>AUC</th><th>P@50</th></tr>
+      <tr><td>Hand-rule baseline</td><td>0.627</td><td>0.24</td></tr>
+      <tr><td>Random forest (client-holdout)</td><td>0.747</td><td>0.68</td></tr>
+    </table>
+    <p class="soon">30,000 anonymized pages, base decline rate 0.542. No client names, URLs,
+    or queries anywhere — see <a href="#work">Work</a> for where it breaks.</p>
   </section>
 
-  <section>
+  <!-- WORK: 3 cases, each problem / did / number / breaks -->
+  <section id="work" aria-label="Work">
+    <p class="label">Work</p>
+    <h2>Work</h2>
+
+    <div class="case">
+      <h3>1. Which page should an editor fix first?</h3>
+      <p><strong>Problem.</strong> 30,000 decaying pages, nobody can fix everything.
+      The editor's question is order: which page first?</p>
+      <p><strong>What I did.</strong> Framed it as ranked binary classification:
+      predict a per-page decline flag, sort by predicted probability, judge on
+      held-out clients. Bar set before training: AUC ≥ 0.70, P@200 ≥ 0.65.</p>
+      <p><strong>Number.</strong> Frame + executed notebook; the bar is a promise,
+      not a result yet. Label weak point written down: −20% is a human line,
+      −19% vs −21% get different labels.</p>
+      <p><strong>Where it breaks.</strong> No model trained at framing time; bar
+      untested. <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the notebook</a>.</p>
+    </div>
+
+    <div class="case">
+      <h3>2. The hand rule that failed</h3>
+      <p><strong>Problem.</strong> If a one-line threshold orders the queue well
+      enough, there is nothing for ML to beat. Test the rule first.</p>
+      <p><strong>What I did.</strong> Scored the most generous hand rule
+      (position &gt; 20 and untouched 180+ days) as a queue on all 30,000 rows,
+      same metric as the future model.</p>
+      <p><strong>Number.</strong> Rule precision 0.538 ≈ the 0.542 base rate,
+      recall 0.001 (14 of 16,262 declines). Model: RF 0.747 AUC / 0.68 P@50 vs
+      rule 0.627 / 0.24 — the ~3x lift that earns ML its place.</p>
+      <p><strong>Where it breaks.</strong> One rule tested, not the best possible
+      rule; class medians overlap (declining vs healthy position 11.3 vs 10.0).
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the notebook</a>.</p>
+    </div>
+
+    <div class="case">
+      <h3>3. The label trap (in progress)</h3>
+      <p><strong>Problem.</strong> The decline label derives from
+      <code>trend_direction</code>/<code>trend_pct</code>. Any feature list
+      including them rereads the answer key.</p>
+      <p><strong>What I did.</strong> Wrote the quarantine into the data contract
+      first: label-derived columns and IDs are never features; client-holdout splits.</p>
+      <p><strong>Number.</strong> Pending — leakage-demo notebook not yet executed.
+      No caught-leak claimed until it runs.</p>
+      <p><strong>Where it breaks.</strong> An unwritten demo proves nothing.
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the contract</a>.</p>
+    </div>
+
+    <p><a class="ghost" href="mailto:you@example.com">Hiring for this? Email me.</a></p>
+  </section>
+
+  <!-- NOTES: space for future posts -->
+  <section aria-label="Notes">
+    <p class="label">Notes</p>
+    <h2>Notes</h2>
+    <p class="soon">Short build notes land here as the track progresses — what I tried,
+    what broke, what the number was. First up: refresh-agent evals and the leakage demo.</p>
+  </section>
+
+  <!-- CAPSTONE: space for capstone work + badge -->
+  <section aria-label="Capstone">
+    <p class="label">Capstone</p>
+    <h2>Capstone</h2>
+    <p class="soon">The capstone paper and deployed write-up will live here (weeks 7–8).</p>
+    <div class="badge-slot">FlyRank completion badge slot — added here once the
+    capstone is approved. Nothing to configure yet.</div>
+  </section>
+
+  <!-- ABOUT: 4 lines -->
+  <section aria-label="About">
+    <p class="label">About</p>
     <h2>About</h2>
-    <p class="soon">Four lines, coming with the build week.</p>
+    <p>I'm an ML intern and student. I build small models on messy search data
+    and write down where they fail. My method: frame → baseline → leak-check →
+    limits. My proof: a refresh queue that beats a hand rule and says exactly
+    where it breaks.</p>
+  </section>
+
+  <!-- CONTACT: every link in one block, mirrored in footer -->
+  <section aria-label="Contact">
+    <p class="label">Contact</p>
+    <h2>Contact</h2>
+    <div class="cta-row">
+      <a class="cta" href="mailto:you@example.com">Email me to set up a chat</a>
+      <!-- TODO(you): paste your booking URL (Cal.com/Calendly) as the href below -->
+      <a class="ghost" href="mailto:you@example.com?subject=Intro%20call">Book a call</a>
+    </div>
+    <p>
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">GitHub</a> ·
+      <!-- TODO(you): paste your LinkedIn profile URL as the href below -->
+      <a href="https://www.linkedin.com/">LinkedIn</a> ·
+      <!-- CV: LinkedIn serves as CV until a PDF exists; then link cv.pdf relatively -->
+      <a href="https://www.linkedin.com/">CV (via LinkedIn)</a>
+    </p>
   </section>
 
   <footer>
-    <!-- TODO(you): replace the email address below -->
-    <a href="mailto:you@example.com">Email</a> ·
-    <a href="https://github.com/yowxy/Flyrank-Internship-ML">GitHub</a>
+    <nav>
+      <!-- TODO(you): replace the email address below -->
+      <a href="mailto:you@example.com">Email</a> ·
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">GitHub</a> ·
+      <a href="https://www.linkedin.com/">LinkedIn</a> ·
+      <a href="https://www.linkedin.com/">CV</a> ·
+      <a href="mailto:you@example.com?subject=Intro%20call">Book a call</a>
+    </nav>
+    <p class="soon">Built by hand in one HTML file. No tracker, no framework, no generated images.</p>
   </footer>
+
 </main>
 </body>
 </html>

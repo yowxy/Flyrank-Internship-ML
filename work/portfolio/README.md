@@ -17,6 +17,6 @@ standalone public repo with Pages on (keeps the ML repo's CI and data concerns s
 
 ## After it is live
 
-- Replace the three `TODO(you)` placeholders (name, email ×2).
+- Replace the `TODO(you)` placeholders (name, email, booking URL, LinkedIn URL — 4 markers, grep to find them).
 - Next week this blank fills with the content map (`../week03_content_map.md`); the kit
   (`../week03_identity_kit.md`) is already baked into the CSS :root block above.
