@@ -65,3 +65,19 @@ Outputs: `work/outputs/refresh_brief_<date>.md` (committed), `refresh_queue_<dat
 python work/scripts/refresh_scout.py --eval-only   # frozen evals, offline, ~2 s
 python work/scripts/refresh_scout.py --top-k 10    # full end-to-end run, ~15 s CPU
 ```
+
+## Re-verification (2026-10-14, senior review)
+
+- Fresh end-to-end run exit 0: `6/6` evals, `30000` rows fetched live, `P@10=0.20`
+  vs base rate `0.5421`, brief + queue + receipts regenerated for `2026-10-14`.
+  Deterministic: top-10 identical to 2026-10-13 run (same scores, same order).
+- Leakage re-check: `trend_direction`/`trend_pct` occur only in guardrail
+  constant, eval fixture, eval-only label derivation, and the no-citation
+  assert — zero occurrences in scoring math (`visibility/freshness/position/depth` block).
+- Data-safety re-check: brief contains only truncated `content_id` + aggregated
+  numeric signals (`impr90d/upd_age/pos/ctr`); no URLs, queries, names, or dates invented.
+- `scripts/` pristine (`git diff HEAD -- scripts/` empty); queue CSV correctly
+  gitignored per `work/**/*.csv`, brief/receipts/capture committable.
+- Run capture overwritten unedited via `script` (headers + `COMMAND_EXIT_CODE="0"`
+  footer intact). Video substitute: intern records with
+  `python work/scripts/refresh_scout.py --top-k 10` (~15 s) + brief scroll for the ~2-min raw capture.

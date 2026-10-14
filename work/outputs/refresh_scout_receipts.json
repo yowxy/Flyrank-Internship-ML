@@ -1,5 +1,5 @@
 {
-  "brief": "refresh_brief_2026-10-13.md",
+  "brief": "refresh_brief_2026-10-14.md",
   "evals": {
     "1": true,
     "2": true,
@@ -17,7 +17,7 @@
     "precision_at_10": 0.2,
     "rows_scored": 30000
   },
-  "queue": "refresh_queue_2026-10-13.csv",
-  "run_date": "2026-10-13",
+  "queue": "refresh_queue_2026-10-14.csv",
+  "run_date": "2026-10-14",
   "segment": null
 }
