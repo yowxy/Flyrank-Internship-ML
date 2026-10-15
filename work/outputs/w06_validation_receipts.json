@@ -1,0 +1,21 @@
+{
+  "after_grouped_clients": {
+    "AUC": 0.747,
+    "P@20": 0.7,
+    "P@200": 0.705,
+    "P@50": 0.78,
+    "n_test": 2325,
+    "test_base": 0.391
+  },
+  "before_random_rows": {
+    "AUC": 0.757,
+    "P@20": 0.85,
+    "P@200": 0.89,
+    "P@50": 0.92,
+    "n_test": 6000,
+    "test_base": 0.542
+  },
+  "gap_auc": 0.01,
+  "n_test_clients": 6,
+  "seed": 42
+}
