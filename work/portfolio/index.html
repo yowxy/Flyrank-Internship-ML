@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Name — Honest ML Prototypes</title>
 <meta name="description" content="Small models on real search data, with the failures written down. FlyRank ML internship portfolio.">
+<meta name="theme-color" content="#FAFAF7">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +37,7 @@
   .badge-slot { border: 1px dashed #9AA3A0; border-radius: 6px; padding: 16px; font-size: 15px; opacity: 0.8; }
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #9AA3A0; font-size: 15px; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 12px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
          gap: 12px; margin: 16px 0; }
   .grid label { display: block; font-size: 14px; }
   .grid input { display: block; width: 100%; margin-top: 4px; padding: 8px 10px;
@@ -48,10 +49,21 @@
          margin-top: 16px; background: #fff; }
   .demo-action { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
   .demo-result ul { margin: 8px 0; padding-left: 20px; font-size: 15px; }
-  .chip { display: inline-block; background: #E6F2EE; color: var(--accent);
+  .chip { display: inline-block; background: #E6F2EE; color: #0B5F52;
          border-radius: 4px; padding: 1px 8px; font-size: 14px; font-weight: 600; }
   .explainer { margin-top: 16px; font-size: 15px; }
-  .explainer summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  .explainer summary { cursor: pointer; color: var(--accent); font-weight: 600;
+         padding: 12px 0; }
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  .table-wrap table { margin: 0; min-width: 300px; }
+  @media (max-width: 560px) {
+    main { padding: 56px 20px 48px; }
+    h1 { font-size: 27px; }
+    h2 { font-size: 21px; }
+    section { margin-top: 48px; }
+    table { font-size: 14px; }
+    th, td { padding: 8px 8px; }
+  }
 </style>
 </head>
 <body>
@@ -70,11 +82,13 @@
   <section aria-label="Proof teaser">
     <p class="label">The one number</p>
     <h2>Random forest beats the hand rule, on held-out clients.</h2>
+    <div class="table-wrap">
     <table>
       <tr><th>Approach</th><th>AUC</th><th>P@50</th></tr>
       <tr><td>Hand-rule baseline</td><td>0.627</td><td>0.24</td></tr>
       <tr><td>Random forest (client-holdout)</td><td>0.747</td><td>0.68</td></tr>
     </table>
+    </div>
     <p class="soon">30,000 anonymized pages, base decline rate 0.542. No client names, URLs,
     or queries anywhere — see <a href="#work">Work</a> for where it breaks.</p>
   </section>
