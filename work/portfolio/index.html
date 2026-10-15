@@ -85,11 +85,12 @@
     <div class="table-wrap">
     <table>
       <tr><th>Approach</th><th>AUC</th><th>P@50</th></tr>
-      <tr><td>Hand-rule baseline</td><td>0.627</td><td>0.24</td></tr>
-      <tr><td>Random forest (client-holdout)</td><td>0.747</td><td>0.68</td></tr>
+      <tr><td>Hand-rule baseline</td><td>0.501</td><td>0.42</td></tr>
+      <tr><td>Random forest (client-holdout)</td><td>0.747</td><td>0.78</td></tr>
     </table>
     </div>
-    <p class="soon">30,000 anonymized pages, base decline rate 0.542. No client names, URLs,
+    <p class="soon">Same 6 held-out clients (2,325 rows, seed 42), test base rate 0.391
+    (full-slice base 0.542). No client names, URLs,
     or queries anywhere — see <a href="#work">Work</a> for where it breaks.</p>
   </section>
 
@@ -105,11 +106,12 @@
       <p><strong>What I did.</strong> Framed it as ranked binary classification:
       predict a per-page decline flag, sort by predicted probability, judge on
       held-out clients. Bar set before training: AUC ≥ 0.70, P@200 ≥ 0.65.</p>
-      <p><strong>Number.</strong> Frame + executed notebook; the bar is a promise,
-      not a result yet. Label weak point written down: −20% is a human line,
-      −19% vs −21% get different labels.</p>
-      <p><strong>Where it breaks.</strong> No model trained at framing time; bar
-      untested. <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the notebook</a>.</p>
+      <p><strong>Number.</strong> Bar cleared on 6 held-out clients (seed 42):
+      RF AUC 0.747 ≥ 0.70, P@200 0.705 ≥ 0.65. Label weak point stands: −20% is
+      a human line, −19% vs −21% get different labels.</p>
+      <p><strong>Where it breaks.</strong> Single holdout, not a benchmark; proxy
+      label, not a future outcome; flagged set carries a 0.447 false-alarm share.
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the notebook</a>.</p>
     </div>
 
     <div class="case">
@@ -119,9 +121,10 @@
       <p><strong>What I did.</strong> Scored the most generous hand rule
       (position &gt; 20 and untouched 180+ days) as a queue on all 30,000 rows,
       same metric as the future model.</p>
-      <p><strong>Number.</strong> Rule precision 0.538 ≈ the 0.542 base rate,
-      recall 0.001 (14 of 16,262 declines). Model: RF 0.747 AUC / 0.68 P@50 vs
-      rule 0.627 / 0.24 — the ~3x lift that earns ML its place.</p>
+      <p><strong>Number.</strong> On all 30,000 rows the generous rule managed
+      precision 0.538 ≈ the 0.542 base rate, recall 0.001 (14 of 16,262 declines).
+      Recomputed on the honest 6-client holdout it falls to AUC 0.501 / P@50 0.42 —
+      the number the model actually beat (0.747 / 0.78, same split, same metric).</p>
       <p><strong>Where it breaks.</strong> One rule tested, not the best possible
       rule; class medians overlap (declining vs healthy position 11.3 vs 10.0).
       <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the notebook</a>.</p>
@@ -169,7 +172,7 @@
       <p class="label">Result</p>
       <p id="demo-action" class="demo-action"></p>
       <ul id="demo-reasons"></ul>
-      <p class="soon">This is the hand rule (AUC 0.627 on 30k rows) — the floor my random
+      <p class="soon">This is the hand rule (AUC 0.501 on held-out clients) — the floor my random
       forest had to beat (0.747). One rule code is missing on purpose:
       <code>declining_with_demand</code> needs the decline label itself, and asking you
       for the answer would be cheating. That is the label trap from case 3.</p>
