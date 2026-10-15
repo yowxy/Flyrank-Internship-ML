@@ -36,6 +36,22 @@
   .badge-slot { border: 1px dashed #9AA3A0; border-radius: 6px; padding: 16px; font-size: 15px; opacity: 0.8; }
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #9AA3A0; font-size: 15px; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+         gap: 12px; margin: 16px 0; }
+  .grid label { display: block; font-size: 14px; }
+  .grid input { display: block; width: 100%; margin-top: 4px; padding: 8px 10px;
+         font-size: 16px; border: 1px solid #9AA3A0; border-radius: 6px;
+         background: #fff; color: var(--text); }
+  button.cta { border: none; cursor: pointer; font-size: 17px; font-family: inherit; }
+  .demo-error { color: #9A3412; font-size: 15px; }
+  .demo-result { border: 1px solid #d8dcd9; border-radius: 6px; padding: 16px;
+         margin-top: 16px; background: #fff; }
+  .demo-action { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  .demo-result ul { margin: 8px 0; padding-left: 20px; font-size: 15px; }
+  .chip { display: inline-block; background: #E6F2EE; color: var(--accent);
+         border-radius: 4px; padding: 1px 8px; font-size: 14px; font-weight: 600; }
+  .explainer { margin-top: 16px; font-size: 15px; }
+  .explainer summary { cursor: pointer; color: var(--accent); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -113,6 +129,53 @@
     <p><a class="ghost" href="mailto:you@example.com">Hiring for this? Email me.</a></p>
   </section>
 
+  <!-- DEMO: the one live feature — the hand rule, running in the visitor's browser -->
+  <section id="demo" aria-label="Live demo">
+    <p class="label">Live demo — the one thing this page does</p>
+    <h2>Try it: the hand rule, live in your browser</h2>
+    <p>Type in a page's stats (or just press the button — an example is filled in).
+    The same thresholds as my pipeline's rule baseline fire reason codes and suggest
+    an action, instantly. Nothing leaves this page; there is no server.</p>
+    <form id="rule-demo" novalidate>
+      <div class="grid">
+        <label>Impressions (90d)<input name="impressions" type="number" min="0" value="1200"></label>
+        <label>Avg. position<input name="position" type="number" min="0" step="0.1" value="14"></label>
+        <label>CTR (%)<input name="ctr" type="number" min="0" step="0.01" value="0.32"></label>
+        <label>Days since update<input name="stale" type="number" min="0" value="210"></label>
+        <label>Word count<input name="words" type="number" min="0" value="900"></label>
+        <label>Content age (days)<input name="age" type="number" min="0" value="400"></label>
+        <label>Sessions (90d)<input name="sessions" type="number" min="0" value="45"></label>
+        <label>Engagement rate (%)<input name="engagement" type="number" min="0" step="0.1" value="22"></label>
+        <label>Scroll rate (%)<input name="scroll" type="number" min="0" step="0.1" value="55"></label>
+      </div>
+      <p class="cta-row"><button class="cta" type="submit">Score this page</button></p>
+      <p id="demo-error" class="demo-error" role="alert" hidden></p>
+    </form>
+    <div id="demo-result" class="demo-result" hidden>
+      <p class="label">Result</p>
+      <p id="demo-action" class="demo-action"></p>
+      <ul id="demo-reasons"></ul>
+      <p class="soon">This is the hand rule (AUC 0.627 on 30k rows) — the floor my random
+      forest had to beat (0.747). One rule code is missing on purpose:
+      <code>declining_with_demand</code> needs the decline label itself, and asking you
+      for the answer would be cheating. That is the label trap from case 3.</p>
+    </div>
+    <details class="explainer">
+      <summary>How this demo works, in plain words (no backend)</summary>
+      <p>A <strong>backend</strong> is the part of a site that lives on somebody else's
+      computer: it remembers things (messages, emails) or runs things (a model) that a
+      plain page cannot do alone. This demo has no backend — and needs none.</p>
+      <p><strong>What this feature does:</strong> it takes nine numbers you type, runs
+      them through five yes/no rules, and shows which rules fired plus the action the
+      rulebook suggests. That is the whole job.</p>
+      <p><strong>How the data flows:</strong> your numbers go from the form into a small
+      function in this page, which checks each threshold and writes the answer back onto
+      the page. Path: form → function → screen. Nothing is sent anywhere, nothing is
+      stored, and it costs nothing to run — which is why it works the same on free
+      hosting as anywhere else.</p>
+    </details>
+  </section>
+
   <!-- NOTES: space for future posts -->
   <section aria-label="Notes">
     <p class="label">Notes</p>
@@ -171,5 +234,73 @@
   </footer>
 
 </main>
+<script>
+// Pure scoring logic — no DOM inside, so it runs identically in a test harness.
+// Thresholds mirror reason_codes() in scripts/02_baseline_score.py, minus
+// declining_with_demand (it needs the label itself — asking for it would be cheating).
+function scoreRefreshPage(v) {
+  var reasons = [];
+  if (v.stale >= 180 && v.impressions >= 500)
+    reasons.push({ code: "stale_visible_page",
+      why: "untouched 180+ days but still visible (500+ impressions)." });
+  if (v.words > 0 && v.words < 1200 && v.impressions >= 250)
+    reasons.push({ code: "thin_visible_page",
+      why: "under 1,200 words with real visibility — an expansion candidate." });
+  if (v.position > 0 && v.position <= 10 && v.age >= 180)
+    reasons.push({ code: "page_one_decay_risk",
+      why: "sitting on page one (position 10 or better) and 180+ days old." });
+  if (v.impressions >= 500 && v.position > 0 && v.position <= 20 && v.ctr < 0.5)
+    reasons.push({ code: "low_ctr_visible_page",
+      why: "seen but not clicked (CTR under 0.5% inside the top 20)." });
+  if (v.sessions >= 30 &&
+      ((v.engagement > 0 && v.engagement < 30) || (v.scroll > 0 && v.scroll < 30)))
+    reasons.push({ code: "low_engagement_visible_page",
+      why: "visited but not engaging (engagement or scroll under 30%)." });
+  if (reasons.length === 0)
+    reasons.push({ code: "general_refresh_review", why: "no rule fired — routine watch." });
+  var codes = reasons.map(function (r) { return r.code; });
+  var action = "monitor";
+  if (codes.indexOf("thin_visible_page") !== -1) action = "expand_and_refresh";
+  else if (codes.indexOf("low_ctr_visible_page") !== -1) action = "refresh_and_review_ctr";
+  else if (codes.indexOf("stale_visible_page") !== -1) action = "refresh";
+  return { reasons: reasons, action: action };
+}
+
+if (typeof document !== "undefined") {
+  var ACTION_WORDS = { expand_and_refresh: "Expand + refresh",
+    refresh_and_review_ctr: "Refresh + fix the snippet",
+    refresh: "Refresh", monitor: "Monitor" };
+  document.getElementById("rule-demo").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target, err = document.getElementById("demo-error"),
+        box = document.getElementById("demo-result");
+    err.hidden = true; box.hidden = true;
+    var get = function (n) { return form.elements[n].value.trim(); };
+    var names = ["impressions", "position", "ctr", "stale", "words",
+                 "age", "sessions", "engagement", "scroll"];
+    for (var i = 0; i < names.length; i++) {
+      if (get(names[i]) === "") {
+        err.textContent = "One field is empty — every box needs a number (0 is fine).";
+        err.hidden = false; return;
+      }
+      if (isNaN(Number(get(names[i]))) || Number(get(names[i])) < 0) {
+        err.textContent = "Numbers only, please — nothing negative, nothing blank.";
+        err.hidden = false; return;
+      }
+    }
+    var out = scoreRefreshPage({
+      impressions: Number(get("impressions")), position: Number(get("position")),
+      ctr: Number(get("ctr")), stale: Number(get("stale")), words: Number(get("words")),
+      age: Number(get("age")), sessions: Number(get("sessions")),
+      engagement: Number(get("engagement")), scroll: Number(get("scroll")) });
+    document.getElementById("demo-action").textContent =
+      "Suggested action: " + (ACTION_WORDS[out.action] || out.action);
+    document.getElementById("demo-reasons").innerHTML = out.reasons.map(function (r) {
+      return "<li><span class=\"chip\">" + r.code + "</span> — " + r.why + "</li>";
+    }).join("");
+    box.hidden = false;
+  });
+}
+</script>
 </body>
 </html>
