@@ -1,0 +1,46 @@
+{
+  "action_mix": {
+    "monitor": 21768,
+    "refresh_content_and_snippet": 4703,
+    "refresh_title_snippet_first": 3529
+  },
+  "bar": {
+    "auc_ge": 0.7,
+    "p200_ge": 0.65
+  },
+  "full_base_rate": 0.5421,
+  "full_rows": 30000,
+  "holdout": {
+    "gap_auc": 0.01,
+    "n_test": 2325,
+    "n_test_clients": 6,
+    "rf": {
+      "AUC": 0.747,
+      "P@20": 0.7,
+      "P@200": 0.705,
+      "P@50": 0.78,
+      "model": "rf",
+      "test_base": 0.391
+    },
+    "test_base": 0.391,
+    "train_base": 0.5548
+  },
+  "median_days_since_last_update": 20.0,
+  "median_days_with_impressions": 81.0,
+  "median_impressions_90d": 731.0,
+  "reason_primary_mix": {
+    "fresh_top3_healthy": 8494,
+    "stale_snippet_page1": 2249,
+    "stale_snippet_page2": 1280,
+    "thin_or_no_signal": 13274,
+    "visible_deep": 4703
+  },
+  "seed": 42,
+  "triggers": {
+    "T1_base_drift_pp": 10,
+    "T2_p50_freeze": 0.6,
+    "T3_feature_drift_pct": 30,
+    "T5_reject_freeze": 0.5,
+    "T6_refit_days": 90
+  }
+}
