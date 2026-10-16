@@ -3,9 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Name — Honest ML Prototypes</title>
+<title>Iklil — Honest ML Prototypes</title>
 <meta name="description" content="Small models on real search data, with the failures written down. FlyRank ML internship portfolio.">
 <meta name="theme-color" content="#FAFAF7">
+<!-- TODO(deploy): swap all four YOUR-DOMAIN placeholders below for the real https
+     address the moment DNS resolves (launch checklist: work/week09_break_your_own_site.md).
+     Scrapers need absolute URLs, so relative paths are wrong here on purpose. -->
+<link rel="canonical" href="https://YOUR-DOMAIN/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta property="og:title" content="Iklil — Honest ML Prototypes">
+<meta property="og:description" content="Small models on real search data, with the failures written down. Content-refresh queue: random forest AUC 0.747 vs hand rule 0.501 on held-out clients.">
+<meta property="og:image" content="https://YOUR-DOMAIN/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Iklil — Honest ML Prototypes">
+<meta name="twitter:description" content="Small models on real search data, with the failures written down. RF AUC 0.747 vs hand rule 0.501, held-out clients.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN/og-card.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +59,8 @@
          font-size: 16px; border: 1px solid #9AA3A0; border-radius: 6px;
          background: #fff; color: var(--text); }
   button.cta { border: none; cursor: pointer; font-size: 17px; font-family: inherit; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 2px; }
   .demo-error { color: #9A3412; font-size: 15px; }
   .demo-result { border: 1px solid #d8dcd9; border-radius: 6px; padding: 16px;
          margin-top: 16px; background: #fff; }
@@ -70,10 +87,10 @@
 <main>
 
   <!-- HERO: the claim + the one action -->
-  <!-- TODO(you): replace "Your Name" and you@example.com (2x: CTA + footer) -->
+  <!-- TODO(you): replace you@example.com with your real address (2x: CTA + footer) -->
   <p class="label">Portfolio — FlyRank ML internship</p>
   <h1>Small models on real search data, with the failures written down.</h1>
-  <p class="sub">Your Name — ML intern &amp; student, FlyRank. I ship honest machine-learning
+  <p class="sub">Iklil — ML intern &amp; student, FlyRank. I ship honest machine-learning
   prototypes on messy data: a content-refresh queue that beats a hand-rule baseline
   and says exactly where it breaks.</p>
   <p><a class="cta" href="mailto:you@example.com">Email me to set up a chat</a></p>
@@ -137,10 +154,15 @@
       including them rereads the answer key.</p>
       <p><strong>What I did.</strong> Wrote the quarantine into the data contract
       first: label-derived columns and IDs are never features; client-holdout splits.</p>
-      <p><strong>Number.</strong> Pending — leakage-demo notebook not yet executed.
-      No caught-leak claimed until it runs.</p>
-      <p><strong>Where it breaks.</strong> An unwritten demo proves nothing.
-      <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the contract</a>.</p>
+      <p><strong>Number.</strong> Injection test on 6 held-out clients (seed 42):
+      adding the leaky <code>trend_pct</code> back drives logistic regression to
+      AUC 0.999 (the harness confesses); without it, honest AUC 0.697. Top honest
+      signal shuffles only 0.029 of AUC (<code>days_with_impressions</code>) —
+      signal, not a leak.</p>
+      <p><strong>Where it breaks.</strong> Single client-holdout, not a benchmark;
+      the 90-day aggregates still contain the label's 30-day input windows
+      (contained by the client boundary, disclosed in the audit).
+      <a href="https://github.com/yowxy/Flyrank-Internship-ML">See the audit</a>.</p>
     </div>
 
     <p><a class="ghost" href="mailto:you@example.com">Hiring for this? Email me.</a></p>
@@ -153,6 +175,8 @@
     <p>Type in a page's stats (or just press the button — an example is filled in).
     The same thresholds as my pipeline's rule baseline fire reason codes and suggest
     an action, instantly. Nothing leaves this page; there is no server.</p>
+    <noscript><p class="soon">Heads up: this demo needs JavaScript to score. The
+    table and cases above carry the same numbers, so nothing is lost without it.</p></noscript>
     <form id="rule-demo" novalidate>
       <div class="grid">
         <label>Impressions (90d)<input name="impressions" type="number" min="0" value="1200"></label>
@@ -231,10 +255,11 @@
     </div>
     <p>
       <a href="https://github.com/yowxy/Flyrank-Internship-ML">GitHub</a> ·
-      <!-- TODO(you): paste your LinkedIn profile URL as the href below -->
-      <a href="https://www.linkedin.com/">LinkedIn</a> ·
+      <!-- TODO(you): paste your LinkedIn profile URL as the href below (handle filled
+         from your public GitHub profile — confirm it before launch) -->
+      <a href="https://www.linkedin.com/in/iklilnajmi">LinkedIn</a> ·
       <!-- CV: LinkedIn serves as CV until a PDF exists; then link cv.pdf relatively -->
-      <a href="https://www.linkedin.com/">CV (via LinkedIn)</a>
+      <a href="https://www.linkedin.com/in/iklilnajmi">CV (via LinkedIn)</a>
     </p>
   </section>
 
@@ -243,8 +268,8 @@
       <!-- TODO(you): replace the email address below -->
       <a href="mailto:you@example.com">Email</a> ·
       <a href="https://github.com/yowxy/Flyrank-Internship-ML">GitHub</a> ·
-      <a href="https://www.linkedin.com/">LinkedIn</a> ·
-      <a href="https://www.linkedin.com/">CV</a> ·
+      <a href="https://www.linkedin.com/in/iklilnajmi">LinkedIn</a> ·
+      <a href="https://www.linkedin.com/in/iklilnajmi">CV</a> ·
       <a href="mailto:you@example.com?subject=Intro%20call">Book a call</a>
     </nav>
     <p class="soon">Built by hand in one HTML file. No tracker, no framework, no generated images.</p>
@@ -300,8 +325,9 @@ if (typeof document !== "undefined") {
         err.textContent = "One field is empty — every box needs a number (0 is fine).";
         err.hidden = false; return;
       }
-      if (isNaN(Number(get(names[i]))) || Number(get(names[i])) < 0) {
-        err.textContent = "Numbers only, please — nothing negative, nothing blank.";
+      var n = Number(get(names[i]));
+      if (isNaN(n) || !isFinite(n) || n < 0) {
+        err.textContent = "Numbers only, please — nothing negative, blank, or infinite.";
         err.hidden = false; return;
       }
     }

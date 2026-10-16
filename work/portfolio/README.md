@@ -9,7 +9,7 @@ standalone public repo with Pages on (keeps the ML repo's CI and data concerns s
 2. Push this folder as its root:
    ```bash
    cd work/portfolio
-   git init -b main && git add index.html favicon.svg && git commit -m "feat: empty but live"
+   git init -b main && git add index.html favicon.svg og-card.png && git commit -m "feat: empty but live"
    git remote add origin git@github.com:YOUR-USER/portfolio.git && git push -u origin main
    ```
 3. On github.com: repo **Settings → Pages → Deploy from branch → main → /(root) → Save**.
