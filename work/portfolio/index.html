@@ -50,6 +50,9 @@
   .case p { margin: 8px 0; }
   .soon { opacity: 0.65; font-size: 15px; }
   .badge-slot { border: 1px dashed #9AA3A0; border-radius: 6px; padding: 16px; font-size: 15px; opacity: 0.8; }
+  .badge-mark { display: inline-block; margin-top: 16px; border: 1px solid var(--accent);
+    border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; }
+  .badge-mark a { text-decoration: none; }
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #9AA3A0; font-size: 15px; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 12px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -230,8 +233,8 @@
     <p class="label">Capstone</p>
     <h2>Capstone</h2>
     <p class="soon">The capstone paper and deployed write-up will live here (weeks 7–8).</p>
-    <div class="badge-slot">FlyRank completion badge slot — added here once the
-    capstone is approved. Nothing to configure yet.</div>
+    <div class="badge-slot">Graduate badge lives in the footer below (official
+    snippet pasted there once your credential is issued). Nothing else to configure.</div>
   </section>
 
   <!-- ABOUT: 4 lines -->
@@ -272,6 +275,15 @@
       <a href="https://www.linkedin.com/in/iklilnajmi">CV</a> ·
       <a href="mailto:you@example.com?subject=Intro%20call">Book a call</a>
     </nav>
+    <!-- TODO(credential): generate your official snippet at
+         https://internship-badge.netlify.app/ (credential ID + first name "Iklil" +
+         Machine Learning track + your cohort), click Copy, and paste it here REPLACING
+         this interim mark. Do not invent an ID — anything unissued opens
+         "No public credential found" on the verify page. -->
+    <p class="badge-mark"><a href="https://internship.flyrank.ai/verify">FlyRank ML Internship — verify credential ↗</a></p>
+    <!-- NOTE(deploy): the line below is true until analytics lands. The moment you
+         paste the beacon, rewrite it to name the analytics (e.g. "Cloudflare Web
+         Analytics, no cookies") so the footer never lies. -->
     <p class="soon">Built by hand in one HTML file. No tracker, no framework, no generated images.</p>
   </footer>
 
@@ -345,5 +357,11 @@ if (typeof document !== "undefined") {
   });
 }
 </script>
+<!-- TODO(deploy): paste your Cloudflare Web Analytics beacon here (free, no cookie
+     banner). Steps: dash.cloudflare.com → Web Analytics → Add a site → copy the
+     token → uncomment and fill it in:
+     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+       data-cf-beacon='{"token": "YOUR-TOKEN"}"><\/script>
+     Then update the footer "No tracker" line per its NOTE(deploy) above. -->
 </body>
 </html>
