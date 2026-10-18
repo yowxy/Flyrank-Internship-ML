@@ -1,147 +1,105 @@
-# FlyRank ML Internship — Starter Repo
+# FlyRank ML Internship — Content-Refresh Ranker (capstone)
 
-**Applied Search Intelligence: Google Search Ranking & Discoverability**
+**Which pages should an editor fix first?** A decision-support ranker that scores 30,000 anonymized search pages and returns a ranked, reason-coded review queue — evaluated on held-out clients, with the failures written down.
 
-This is the starting point for the FlyRank ML Internship. You **clone it into your own public
-repo** (one click — *Use this template*), build everything there, and submit that repo URL on
-each assignment in your portal — it's your workspace, your submission, and your portfolio all
-at once. The rhythm is simple: do the work, commit it, submit on the card. Done.
+## What it does, and for whom
 
-Everything here runs on a small **anonymized** slice of real FlyRank search data. No credentials,
-no private client data, no setup headaches.
+- **What it does:** frames content-refresh triage as ranked binary classification (is a page declining?), trains a transparent hand-rule baseline and a small model ladder (logistic regression, decision tree, random forest), and ships the model that clears a pre-registered bar on 6 never-seen clients.
+- **For whom:** content editors who must pick ~50 pages to review per sprint out of 30,000; reviewers/employers who want to see honest ML work — baseline first, leakage checks, error analysis, and explicit limits — not a leaderboard headline.
 
-> **New here?** Two reads: **[SETUP.md](SETUP.md)** (GitHub, Colab, and data access — ten
-> minutes, with every silent pitfall flagged), then **[GUIDE.md](GUIDE.md)** (every file
-> explained, what to edit vs. leave alone, and where your own work goes — five minutes).
+Headline result (committed receipt `work/outputs/w05_model_receipts.json`, seed 42, client-grouped holdout):
 
----
-
-## Quickstart — first win in 2 minutes
-
-The fastest path is Google Colab (one click, zero install). Open Notebook 1 and run all cells:
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/notebooks/01_first_look_and_discovery.ipynb?flush_cache=true)
- **Week 1 — Run it, then discover a real truth yourself**
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/notebooks/02_your_first_readable_model.ipynb?flush_cache=true)
- **Week 2 — The model is just a rule you can read**
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/notebooks/03_working_with_the_full_release.ipynb?flush_cache=true)
- **Weeks 3+ — The full release (~79M rows) via DuckDB, no download needed** — hosted at
- [`FlyRank/internship-warehouse`](https://huggingface.co/datasets/FlyRank/internship-warehouse) (gated: request access + accept the data-use terms, approval is instant)
-
----
-
-## Your assignment notebooks — open, fill, save, done
-
-Every assignment is one pre-named skeleton notebook in `work/notebooks/`. Click its badge,
-fill the sections in order, then **File → Save a copy in GitHub → OK** — the dialog is
-already pre-filled with your repo and the right path.
-
-> **The badges know whose repo they're in.** About 30 seconds after you create your copy, an
-> automatic commit ("Point Colab badges at this copy") rewires every badge in it to open
-> **your** notebooks — with your saved work — instead of the shared read-only ones. Reading
-> this on the shared starter page? The badges below open blank previews; make your copy
-> first ([SETUP.md](SETUP.md), Moment 1).
-
-| Week | Card | Notebook | Open |
+| Approach | ROC-AUC | P@50 | P@200 |
 |---|---|---|---|
-| 1 | ML-02 | `w01_research_question` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w01_research_question.ipynb?flush_cache=true) |
-| 2 | ML-03 | `w02_ml_task_framing` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w02_ml_task_framing.ipynb?flush_cache=true) |
-| 3 | ML-04 | `w03_data_contract` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w03_data_contract.ipynb?flush_cache=true) |
-| 3 | ML-05 | `w03_feature_leakage_check` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w03_feature_leakage_check.ipynb?flush_cache=true) |
-| 4 | ML-06 | `w04_signal_audit` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w04_signal_audit.ipynb?flush_cache=true) |
-| 4 | ML-07 | `w04_baseline_score` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w04_baseline_score.ipynb?flush_cache=true) |
-| 5 | ML-08 | `w05_model` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w05_model.ipynb?flush_cache=true) |
-| 6 | ML-09 | `w06_validation_audit` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w06_validation_audit.ipynb?flush_cache=true) |
-| 7 | ML-10 | `w07_action_playbook` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/w07_action_playbook.ipynb?flush_cache=true) |
-| 8 | ML-11 | `capstone` | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yowxy/Flyrank-Internship-ML/blob/main/work/notebooks/capstone.ipynb?flush_cache=true) |
+| Hand-rule baseline | 0.501 | 0.42 | 0.395 |
+| Logistic regression | 0.696 | 0.52 | 0.545 |
+| Decision tree | 0.742 | 0.56 | 0.595 |
+| **Random forest (shipped)** | **0.747** | **0.78** | **0.705** |
 
-Badges not opening *your* copy? Colab's built-in opener always works: **File → Open notebook
-→ GitHub tab** → paste `github.com/you/your-repo` → pick the notebook.
+Test base rate 0.391 on 2,325 held-out pages (6 clients). Pre-registered bar: AUC ≥ 0.70 **and** P@200 ≥ 0.65 — cleared on both axes. The model is a queue-head tool: yield falls toward base rate as K grows, which is why several K values are reported.
 
-### Prefer local?
+## Setup (a stranger can follow, no credentials)
+
+One-time, offline:
 
 ```bash
-git clone <this-repo-url>
-cd flyrank-ml-internship-starter
-pip install -r requirements.txt          # or: uv pip install -r requirements.txt
+git clone https://github.com/yowxy/Flyrank-Internship-ML.git
+cd Flyrank-Internship-ML
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+The dataset ships in the repo (`data/raw/content_refresh_anonymized.csv`, 30,000 pseudonymized pages × 44 columns). No client names, domains, URLs, titles, or queries are present; identifiers group the split only, never features. Nothing private is committed under `work/`.
+
+## Usage
+
+End-to-end pipeline (reproduces every number in the paper from committed receipts):
+
+```bash
 python scripts/run_all.py
 ```
 
-That runs the whole pipeline on the bundled sample and writes results to `outputs/`.
+Individual stages:
 
----
-
-## What you get
-
-| Path | What it is |
-|---|---|
-| `notebooks/` | Week 1–2 **first-win notebooks** (Colab-ready). Start here. |
-| `scripts/01–05` + `run_all.py` | The runnable reference pipeline: prepare → baseline → train → evaluate → PDF. |
-| `data/raw/content_refresh_anonymized.csv` | The anonymized starter dataset (~30k pages). |
-| `outputs/` | Example outputs so you can see the **target shape** (`model_report.md`, `refresh_queue_sample.csv`, `charts/`). |
-| `work/` | **Your space.** Lane experiments and your capstone live here — see `work/README.md`. |
-| `docs/` | The core docs + the data dictionary (see below). |
-
-### Read these (in `docs/`)
-
-1. **`ml-core-foundation-framework.md`** — the first-principles map of ML as a whole system. The backbone of the live sessions.
-2. **`ml-intern-dataset-and-lane-guide.md`** — how to use the data safely, the capstone workflow, and the analysis "lanes" you can pick from.
-3. **`intern-free-tooling-guide.md`** — the zero-budget tool stack (Python, Colab, free AI assistants). You never need to pay for anything.
-4. **`data-dictionary.md`** — all 44 columns: meaning, scale, and gotchas. Keep it open while you work.
-
----
-
-## The pipeline (what `run_all.py` does)
-
-```text
-01_prepare_features.py   clean + build the feature vector, define the label
-02_baseline_score.py     a transparent hand-rule "fix this first" score
-03_train_model.py        logistic regression, decision tree, random forest (client-holdout split)
-04_evaluate_and_export.py  ranked queue + charts + Markdown report
-05_build_pdf_report.py   a shareable PDF summary
+```bash
+python scripts/01_prepare_features.py   # build the 60-column feature frame
+python scripts/02_baseline_score.py     # hand-rule baseline + receipts
+python scripts/03_train_model.py        # model ladder + receipts
+python scripts/04_evaluate_and_export.py# held-out eval + charts
+python scripts/05_build_pdf_report.py   # PDF of the playbook
 ```
 
-On the bundled sample, the learned model clearly beats the hand-written rule at picking the right
-pages to review first (**Precision@50 ≈ 0.24 → 0.74**; the model number can land 0.68–0.74
-depending on library versions — the ~3x lift is the point). The notebooks compute these numbers
-live, so they always reflect the current data and environment.
+Notebooks (one per week, map to paper sections): `work/notebooks/w01_…` through `work/notebooks/capstone.ipynb`. Run `capstone.ipynb` top to bottom — it recomputes the headline table from `work/outputs/*.json` and asserts all artifacts are present.
 
-**Teaching point:** the model is the capstone, but the *workflow* is the lesson —
-`problem framing → data cleaning → baseline → first model → evaluation → explainable recommendation`.
+Deployed research paper: https://yowxy.github.io/Flyrank-Internship-ML/ (also in `submission/paper_url.txt`).
 
----
+## Architecture sketch
 
-## Data safety (read `DATA_USE.md`)
+```
+data/raw/content_refresh_anonymized.csv
+        |
+        v
+scripts/01_prepare_features.py  ->  60 model columns (21 numeric + 9 categorical)
+        |                                 (13 label/window/ID columns banned)
+        v
+scripts/02_baseline_score.py    ->  hand rule: stale90 · visible500 · weak_snippet · (21 − position)
+        v
+scripts/03_train_model.py       ->  logreg / tree / random forest, grouped client-holdout (seed 42)
+        v
+scripts/04_evaluate_and_export.py->  same-split model vs baseline, AUC + P@K, charts
+        v
+work/outputs/*.json  +  work/figures/*.svg   ->  docs/index.html (deployed paper)
+```
 
-- Only the small **anonymized** CSV ships here — no client names, domains, URLs, titles, or keywords.
-- **Never** add raw private client data to this repo or your fork. Need more data? Request an approved
-  release from your mentor — never export it yourself.
-- Don't paste client data into third-party AI tools.
-- Frame every result as **observed / measured / directional / decision-support** — never
-  "I predicted Google's algorithm."
+Split design: rows grouped by `client_id`, 6 of 32 clients held out entirely (seed 42). A random row-split flatters the model (AUC 0.757 → grouped 0.747; P@50 0.92 → 0.78); the grouped number is the one shipped. This is the load-bearing design decision.
 
-The `.gitignore` blocks datasets by default, and CI fails any commit that includes a dataset.
+## Evaluation results (shipped, v2)
 
----
+These are the committed, re-runnable receipts — not hand-typed claims.
 
-## Assignments & schedule
+- `work/outputs/w05_model_receipts.json` — model ladder on the held-out split (table above).
+- `work/outputs/w06_validation_receipts.json` — before/after split audit: random-row AUC 0.757 vs client-grouped AUC 0.747; gap 0.01.
+- `work/outputs/w07_playbook_receipts.json` — queue action mix, monitoring triggers, value scenario (~39 of 50 reviewed pages truly declining at P@50 0.78 vs ~20 at base).
+- `work/figures/playbook_precision_at_k.svg` — queue-head yield (Figure 1).
+- `work/figures/playbook_archetype_rates.svg` — decline share by archetype (Figure 2).
 
-Weekly assignments, live events, and the capstone live on **your portal board** (your
-enrollment email has your access link). This repo is the shared technical foundation they all
-build on — and the `skills/` folder here is the instruction library for your AI assistant
-(start at [skills/README.md](skills/README.md)).
+## Limitations (stated up front, not hidden)
 
-**First time with GitHub?** You need exactly four things (full walkthrough: [SETUP.md](SETUP.md)):
-1. A free account at github.com.
-2. Your own copy of this repo: **Use this template → Create a new repository** → public.
-   (One click — brings the notebooks, `work/`, and the CI leak-guard with it.)
-3. In Colab: *File → Save a copy in GitHub* — opened from your copy's badges, the dialog is
-   already pre-filled with your repo and path, so it's just OK (Colab handles auth).
-4. That's your submission repo — share its **github.com/you/your-repo** URL with Assignment 1
-   (never a colab.research.google.com or drive.google.com link).
+- The label is a **proxy**: a same-window −20% impressions bucket. −19% and −21% get different labels; nothing here predicts a future trajectory.
+- **No causal evidence:** no refresh experiment was run. This claims ranking value for ordering review, not that refreshing recovers traffic.
+- **Single client-holdout at seed 42:** directional, not a benchmark. A different held-out set can move the numbers.
+- **Errors concentrate in the tail:** 0.447 false-alarm share on flagged pages; top-3 error 9.3% vs 37–43% deeper. The queue is human-reviewed, never automatic.
+- **Overlapping windows:** 90-day aggregates contain the label's 30-day sub-windows; client-grouping contains the bleed at the boundary but not within a client.
+- **Scale:** metrics come from the 30,000-page anonymized slice, not the full ~79M-row release.
 
----
+## Honest about AI
 
-*Track leads: Mirza Ašćerić (ML) · Hole (data engineering). Code under MIT (see `LICENSE`); data under `DATA_USE.md`.*
+I drafted this README, the notebook structure, and the paper prose with an AI assistant (Claude via opencode) — it helped with section scaffolding, chart captions, and wording. The analysis decisions are mine: the label definition, the banned-feature list and its in-code assertion, the client-grouped split, the leakage-injection test, the baseline rule, and every number traced to `work/outputs/*.json`. I checked each committed receipt against a fresh notebook run before shipping. AI wrote drafts; I verified the claims.
+
+## Reproducibility
+
+Seeds fixed at 42 throughout. From a fresh clone: `pip install -r requirements.txt && python scripts/run_all.py`, then open `work/notebooks/capstone.ipynb` and run all cells. Every figure and table in the deployed paper traces to a committed JSON receipt or SVG in `work/`.
+
+## License
+
+MIT — see LICENSE.

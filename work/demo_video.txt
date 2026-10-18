@@ -1,0 +1,5 @@
+# Demo video link — Assignment 8.1 (FL-09)
+
+Paste one line: the URL of your recorded 3–5 minute live demo (YouTube unlisted is fine). Record per `work/demo_script.md` — screen + voice, real pipeline, no slides, one design decision + one limitation explained on camera.
+
+URL:
