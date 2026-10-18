@@ -7,6 +7,7 @@ Save these three PNGs here; they are the toolkit proof for the FL-01 card:
 | `claude_project.png` | Claude Project settings showing name + custom instructions |
 | `chatgpt_account.png` | ChatGPT account/profile or settings screen |
 | `academy_module1.png` | Academy course page with Module 1 complete |
+| `next_case_reminder.png` | Week 9 keep-building reminder: the `FlyRank: add refresh-experiment case` calendar event imported from `work/next_case_reminder.ics` |
 
 PNGs here are committed as toolkit proof (only datasets and secrets stay out of git). Keep the paste-ready spec in
 `../claude_project_spec.md` under version control instead.

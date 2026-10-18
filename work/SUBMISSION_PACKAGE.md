@@ -17,6 +17,7 @@ This index links every deliverable in the repo, so a reviewer (or your Week-1 se
 | Retrospective (Week-1 self, 500–800 words) | `work/retrospective.md` | committed |
 | Hours log template | `work/hours_log.md` | committed |
 | Build-in-public post draft | `work/build_in_public_post.md` | committed |
+| Week 9 — how to add the next case (+ named next piece + reminder) | `work/NEXT_CASE.md` + `work/next_case_reminder.ics` | prepared; import + screenshot pending |
 
 ## Notebooks (one per week, map to paper sections)
 

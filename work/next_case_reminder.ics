@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FlyRank ML Internship//NEXT_CASE reminder//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:next-case-refresh-experiment@github.com/yowxy/Flyrank-Internship-ML
+DTSTAMP:20261018T090000Z
+DTSTART:20261101T090000
+DTEND:20261101T094500
+RRULE:FREQ=WEEKLY;COUNT=12
+SUMMARY:FlyRank: add refresh-experiment case
+DESCRIPTION:Add the next case study to the portfolio: does refreshing a flagged page actually recover traffic? Steps, voice and stack context: work/NEXT_CASE.md. Repo: https://github.com/yowxy/Flyrank-Internship-ML
+LOCATION:https://github.com/yowxy/Flyrank-Internship-ML/blob/main/work/NEXT_CASE.md
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:FlyRank: add refresh-experiment case
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

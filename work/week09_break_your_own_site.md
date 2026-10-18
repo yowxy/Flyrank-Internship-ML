@@ -64,7 +64,7 @@ Reviewer role: structured peer (assistant), against the Week 9 pass/revise bar.
 3. On the live address: phone check, View-Source title check, PageSpeed run, Google "Iklil FlyRank" search, share-link card preview (iMessage/X/LinkedIn), favicon visible.
 4. Replace `you@example.com` (5×) with real address; replace booking mailto with Cal/Calendly link; confirm LinkedIn handle.
 5. Install FlyRank graduate badge in footer (slot exists) linking to verification page.
-6. Keep-building: next case study = capstone paper deployment (section slot exists); reminder — file the note the day the paper ships. AI workspace (`ai_workspace_spec.md`) preserved.
+6. Keep-building: how-to + named next piece + reminder live in `work/NEXT_CASE.md` (next case = refresh experiment; reminder = `work/next_case_reminder.ics` + screenshot). AI workspace (`ai_workspace_spec.md`) and Claude Project (`fl01_workflow_audit/claude_project_spec.md`) preserved.
 
 ## Self-check
 
