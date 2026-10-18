@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="480.0" y="34" text-anchor="middle" font-family="Arial" font-size="22" fill="#16232a">Queue-head yield on held-out clients (precision@K, seed 42)</text>
+<text x="218" y="116.8" text-anchor="end" font-family="Arial" font-size="13" fill="#27343b">RF P@20 (0.700)</text>
+<rect x="230" y="70.0" width="619.2" height="72.0" fill="#6F4E7C" rx="4"/>
+<text x="857.2" y="116.8" font-family="Arial" font-size="13" fill="#27343b">0.7</text>
+<text x="218" y="198.8" text-anchor="end" font-family="Arial" font-size="13" fill="#27343b">RF P@50 (0.780)</text>
+<rect x="230" y="152.0" width="690.0" height="72.0" fill="#6F4E7C" rx="4"/>
+<text x="928.0" y="198.8" font-family="Arial" font-size="13" fill="#27343b">0.78</text>
+<text x="218" y="280.8" text-anchor="end" font-family="Arial" font-size="13" fill="#27343b">RF P@200 (0.705)</text>
+<rect x="230" y="234.0" width="623.7" height="72.0" fill="#6F4E7C" rx="4"/>
+<text x="861.7" y="280.8" font-family="Arial" font-size="13" fill="#27343b">0.705</text>
+<text x="218" y="362.8" text-anchor="end" font-family="Arial" font-size="13" fill="#27343b">Rule P@50 (0.420)</text>
+<rect x="230" y="316.0" width="371.5" height="72.0" fill="#6F4E7C" rx="4"/>
+<text x="609.5" y="362.8" font-family="Arial" font-size="13" fill="#27343b">0.42</text>
+<text x="218" y="444.8" text-anchor="end" font-family="Arial" font-size="13" fill="#27343b">Test base rate (0.391)</text>
+<rect x="230" y="398.0" width="345.9" height="72.0" fill="#6F4E7C" rx="4"/>
+<text x="583.9" y="444.8" font-family="Arial" font-size="13" fill="#27343b">0.391</text>
+</svg>
