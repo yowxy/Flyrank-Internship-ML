@@ -2,6 +2,8 @@
 
 **Which pages should an editor fix first?** A decision-support ranker that scores 30,000 anonymized search pages and returns a ranked, reason-coded review queue — evaluated on held-out clients, with the failures written down.
 
+> **Also in this repo:** **Refresh Scout**, a scripted weekly triage agent that turns the same anonymized snapshot into a top-10 editor brief (one command, frozen evals, kill switch, no LLM in the scoring path). Docs: `work/AGENT_README.md`. Demo script: `work/agent_demo_script.md`.
+
 ## What it does, and for whom
 
 - **What it does:** frames content-refresh triage as ranked binary classification (is a page declining?), trains a transparent hand-rule baseline and a small model ladder (logistic regression, decision tree, random forest), and ships the model that clears a pre-registered bar on 6 never-seen clients.

@@ -18,6 +18,8 @@ This index links every deliverable in the repo, so a reviewer (or your Week-1 se
 | Hours log template | `work/hours_log.md` | committed |
 | Build-in-public post draft | `work/build_in_public_post.md` | committed |
 | Week 9 — how to add the next case (+ named next piece + reminder) | `work/NEXT_CASE.md` + `work/next_case_reminder.ics` | prepared; import + screenshot pending |
+| Refresh Scout agent README | `work/AGENT_README.md` | committed |
+| Refresh Scout demo script (agent) | `work/agent_demo_script.md` | committed; video link pending |
 
 ## Notebooks (one per week, map to paper sections)
 
